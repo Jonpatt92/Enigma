@@ -2,6 +2,7 @@
 Enigma encryption project
 
 Useful Methods:
+
 Array#rotate
 
 Date#strftime

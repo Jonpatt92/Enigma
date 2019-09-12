@@ -1,19 +1,25 @@
-#mday ⇒ Object
-#Returns the day of the month (1-31).
+require 'pry'
+require 'date'
+class Offset
+  attr_reader :date, :offset
 
-#mon ⇒ Object
-#Returns the month (1-12).
+  def initialize(date = nil)
+    @date = date
+    if date == nil
+      @date = self.create_date
+    end
 
-#year ⇒ Integer
-#Returns the year.
+    @offset = self.calculate_offset
+  end
 
-#pry(Enigma)> Date.today
-#=> #<Date: 2019-09-12 ((2458739j,0s,0n),+0s,2299161j)>
-#[2] pry(Enigma)> shift = Date.today
-#=> #<Date: 2019-09-12 ((2458739j,0s,0n),+0s,2299161j)>
-#[3] pry(Enigma)> shift.mday
-#=> 12
-#[4] pry(Enigma)> shift.mon
-#=> 9
-#[5] pry(Enigma)> shift.year
-#=> 2019
+  def create_date
+    Date.today.strftime("%d%m%y")
+  end
+
+  def calculate_offset
+    offset_value = @date.to_i * @date.to_i
+    offset_value.to_s[-4..-1]
+  end
+end
+
+# binding.pry

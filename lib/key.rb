@@ -1,28 +1,33 @@
 require 'pry'
+require_relative 'enigma'
 
-class Key
-  attr_reader :key, :key_shift
+class Key < Enigma
+  attr_reader :key_value
   def initialize(key = nil)
-    @key = key.to_s
+
+   @key_value = key.to_s
 
     if key == nil
-      @key = self.random_key
+     @key_value = self.random_key
     end
 
-    @key_shift = self.find_key_shift
+    #Make this value be set & stored in Shift ...or... accessible to Shift. Changeable to Enigma
+    #@key_shift = self.find_key_shift
   end
 
+  #Make calculable(or randomable) method, callable in Shift and Key
   def random_key
     5.times.map { rand(0..9) }.join #5 digit number as a string
   end
 
-  def find_key_shift
+  #Make calculable method, callable in Shift
+  def find_key_shift(key)
     key_shift = {a: 0, b: 0, c: 0, d: 0}
-    if @key.count("0123456789") == 5
-      string_key = @key.to_s
+    if key.count("0123456789") == 5
+      string_key = key.to_s
     elsif
-      @key = self.random_key
-      string_key = @key.to_s
+     key = self.random_key
+      string_key = key.to_s
     end
 
     key_shift[:a] = string_key[0..1]
@@ -38,5 +43,5 @@ end
 binding.pry
 
 # elsif key != nil && key.to_s.count("0123456789") != 5
-#   @key = self.random_key
+#  @key_value = self.random_key
 #   puts "The key must be a 5 digit number, generating random key."

@@ -15,14 +15,14 @@ class Shift #< Enigma
     @characters = Array("a".."z").push(" ")
     @decrypt = decrypt
     @output_message = nil
-    # shift_message
+    #shift_message
   end
 
   def shift_message
     key_shift = find_key_shift(@key.key_value) # Hash
     date_shift = calculate_offset(@date.date) # 4 digit integer
-    absolute_shift = calculate_shift(key_shift, date_shift, decrypt)
-    @output_message = apply_shift(@input_message, @absolute_shift, @decrypt)
+    absolute_shift = calculate_shift(key_shift, date_shift, @decrypt)
+    @output_message = apply_shift(@input_message, absolute_shift)
   end
 
 end

@@ -7,7 +7,6 @@ class OffsetTest < Minitest::Test
   def setup
     @offset = Offset.new
     @offset_2 = Offset.new("130592")
-    #maybe use mock to set todays date
   end
 
   def test_it_exists

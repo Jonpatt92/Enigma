@@ -1,25 +1,26 @@
 
 module Calculable
 
-  #Make calculable(or randomable) method, callable in Shift and Offset
+  # Callable in Shift and Offset
   def create_date
     Date.today.strftime("%d%m%y")
   end
 
-  #Make calculable(or randomable) method, callable in Shift and Key
+  # Callable in Shift and Key
   def random_key
     rand.to_s[2..6] #5 digit number as a string
   end
 
-  #Make calculable method, callable in shift
+  # Callable in shift
   def calculate_offset(date)
     offset_value = date.to_i * date.to_i
     @date_shift = offset_value.to_s[-4..-1]
   end
 
-  #Make calculable method, callable in Shift
+  # Callable in Shift
   def find_key_shift(key)
     key_shift = {a: 0, b: 0, c: 0, d: 0}
+    key = key.to_s
     if key.count("0123456789") == 5
       string_key = key.to_s
     elsif
@@ -34,18 +35,21 @@ module Calculable
 
     key_shift
   end
+end
 
   #Callable in Shift, returns {a:,b:,c:,d:} hash
-  # def calculate_shift(decrypt = false)
-    #if true, run backwards to decrypt
+
+  # def calculate_shift(key_shift, date_shift, decrypt = false)
+    #if true, reverse values
     #@shift = combine @date_shift & @key_shift
   # end
 
+
   # Called in shift. Outputs encrypted or decrypted message
+
   # def apply_shift(message, shift, decrypt = false)
 
   # end
-end
 
 
 ##Consider Implementing##

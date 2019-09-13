@@ -4,7 +4,7 @@ Bundler.require(:default)
 require_relative 'shift'
 
 #Only Enigma can assign anything other than a nil-balancing random key or 'today's date'
-class Enigma < Shift
+class Enigma #< Shift
   attr_accessor :encrypted_message, :decrypted_message
   attr_reader :shift
 
@@ -13,15 +13,15 @@ class Enigma < Shift
     @deshift = nil
     @encrypt_key = nil
     @encrypt_date = nil
-    # @encrypted_message = nil
-    # @decrypted_message = nil
+    @encrypted_message = nil
+    @decrypted_message = nil
   end
 
   def encrypt(message, key = nil, date = nil)
     @shift = Shift.new(message, key, date)
     @encrypt_key = @shift.key
     @encrypt_date = @shift.date
-    encrypted_message = @shift.output_message
+    @encrypted_message = @shift.output_message
     encrypted_hash = { encryption: encrypted_message,
                        key: key,
                        date: date }
@@ -29,7 +29,7 @@ class Enigma < Shift
 
   def decrypt(message = @encrypted_message, key = @encrypt_key, date = @encrypt_date)
     @deshift = Shift.new(message, key, date, true)
-    decrypted_message = @deshift.output_message
+    @decrypted_message = @deshift.output_message
     decrypted_hash = { decryption: decrypted_message,
                        key: key,
                        date: date }

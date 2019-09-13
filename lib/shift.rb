@@ -4,7 +4,7 @@ require_relative 'offset'
 require_relative 'enigma'
 # require 'pry'
 
-class Shift #< Enigma is this necessary?
+class Shift #< Enigma
   include Calculable
   attr_reader :key, :date, :output_message#, :characters
 

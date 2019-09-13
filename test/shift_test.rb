@@ -4,10 +4,8 @@ require './lib/shift'
 class ShiftTest < Minitest::Test
 
   def setup
-    @enigma = Enigma.new
-    key = @enigma.key.find_key_shift
-    #offset = @enigma.offset.offset_value
-    @shift_1 = Shift.new(key, offset_value)
+    @shift = Shift.new()
+
   end
 
   def test_it_exists

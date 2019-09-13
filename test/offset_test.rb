@@ -1,6 +1,6 @@
 require './test/test_helper'
-require 'date'
 require './lib/offset'
+require 'date'
 
 class OffsetTest < Minitest::Test
 
@@ -16,7 +16,6 @@ class OffsetTest < Minitest::Test
 
   def test_it_initialize_with_todays_date_and_offset
     expected_date = Date.today.strftime("%d%m%y")
-    expected_offset = (Date.today.strftime("%d%m%y").to_i * Date.today.strftime("%d%m%y").to_i).to_s[-4..-1]
     assert_equal expected_date, @offset.date
     assert_equal expected_offset, @offset.offset
   end

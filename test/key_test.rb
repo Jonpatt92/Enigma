@@ -1,5 +1,4 @@
 require './test/test_helper'
-require 'date'
 require './lib/key'
 
 class KeyTest < Minitest::Test

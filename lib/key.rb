@@ -1,6 +1,6 @@
 require_relative 'calculable'
 
-class Key #< Shift is this necessary!
+class Key #< Shift is this necessary?
   include Calculable
   attr_reader :key_value
 

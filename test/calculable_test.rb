@@ -59,9 +59,23 @@ class CalculableTest < Minitest::Test
 
   def test_apply_shift_for_encrypt
     skip
+    message = "Hello world"
+    shift = { a: 12,
+              b: 27,
+              c: 40,
+              d: 49  }
+    expected_string = #"encrypted hello world"
+    assert_equal expected_string, @shift.apply_shift(message, shift)
   end
 
   def test_apply_shift_for_decrypt
     skip
+    message = # encrypted "Hello world"
+    shift = { a: -12,
+              b: -27,
+              c: -40,
+              d: -49  }
+    expected_string = "hello world"
+    assert_equal expected_string, @shift.apply_shift(message, shift, true)
   end
 end

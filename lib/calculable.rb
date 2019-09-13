@@ -45,11 +45,17 @@ end
   # end
 
 
-  # Called in shift. Outputs encrypted or decrypted message
+  # Called in shift. Outputs encrypted or decrypted message based on 'absolute_shift'
 
-  # def apply_shift(message, shift, decrypt = false)
+  # def apply_shift(message, shift)
 
   # end
+
+
+
+
+
+
 
 
 ##Consider Implementing##

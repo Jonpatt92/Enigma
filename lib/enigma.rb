@@ -22,7 +22,7 @@ class Enigma #< Shift
     @encrypt_key = @shift.key
     @encrypt_date = @shift.date
     @encrypted_message = @shift.output_message
-    encrypted_hash = { encryption: encrypted_message,
+    encrypted_hash = { encryption: @encrypted_message,
                        key: key,
                        date: date }
   end

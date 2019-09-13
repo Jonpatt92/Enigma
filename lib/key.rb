@@ -1,7 +1,7 @@
 require 'pry'
-require_relative 'enigma'
+#require_relative 'enigma'
 
-class Key < Enigma
+class Key #< Enigma...or...Shift
   attr_reader :key_value
   def initialize(key = nil)
 

@@ -1,8 +1,8 @@
 require 'pry'
 require 'date'
-require_relative 'enigma'
+#require_relative 'enigma'
 
-class Offset < Enigma
+class Offset #< Enigma...or...Shift
   attr_reader :date
 
   def initialize(date = nil)

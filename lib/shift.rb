@@ -1,8 +1,8 @@
 #strike code
 #require_relative 'key'
-require_relative 'enigma'
+#require_relative 'enigma'
 
-class Shift < Enigma
+class Shift #< Enigma #is this necessary?
   attr_accessor :key, :date, :characters
 
   def initialize(key = nil, date = nil, decrypt = false) # (key)

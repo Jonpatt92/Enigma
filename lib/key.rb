@@ -13,7 +13,7 @@ class Key
   end
 
   def random_key
-    5.times.map { rand(0..9) }.join # 5 digit number as a string
+    5.times.map { rand(0..9) }.join #5 digit number as a string
   end
 
   def find_key_shift
@@ -35,6 +35,7 @@ class Key
 
 end
 
+binding.pry
 
 # elsif key != nil && key.to_s.count("0123456789") != 5
 #   @key = self.random_key

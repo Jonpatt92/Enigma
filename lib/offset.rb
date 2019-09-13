@@ -1,5 +1,6 @@
 require 'pry'
 require 'date'
+
 class Offset
   attr_reader :date, :offset
 
@@ -9,7 +10,7 @@ class Offset
       @date = self.create_date
     end
 
-    @offset = self.calculate_offset
+    @offset_value = self.calculate_offset
   end
 
   def create_date
@@ -21,5 +22,3 @@ class Offset
     offset_value.to_s[-4..-1]
   end
 end
-
-# binding.pry

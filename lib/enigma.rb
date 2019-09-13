@@ -10,17 +10,17 @@ class Enigma
   attr_reader :key, :offset, :shift
 
   def initialize
-    @key = Key.new#random key
-    @offset = offset#the date offset
+    @key = Key.new #random key
+    @offset = Offset.new #the date offset
     @shift = shift#the amount of shift 1-4
   end
 
   def encrypt(message, key = @key.random_key, date = @offset.date)
-
+    @key = Key.new(key)
+    @date = Offset.new(date)
   end
 
   def decrypt
 
   end
-binding.pry
 end

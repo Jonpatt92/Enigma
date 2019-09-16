@@ -1,3 +1,4 @@
+require 'pry'
 
 module Calculable
 
@@ -14,18 +15,18 @@ module Calculable
   # Callable in shift
   def calculate_offset(date)
     offset_value = date.to_i * date.to_i
-    @date_shift = offset_value.to_s[-4..-1]
+    offset_value.to_s[-4..-1]
   end
 
   # Callable in Shift
   def find_key_shift(key)
     key_shift = {a: 0, b: 0, c: 0, d: 0}
-    key = key.to_s
-    if key.count("0123456789") == 5
-      string_key = key.to_s
-    elsif
-     key = self.random_key
-      string_key = key.to_s
+    this_key = key.to_s
+    if this_key.count("0123456789") == 5
+      string_key = this_key
+    else
+      rand_key = self.random_key
+      string_key = rand_key
     end
 
     key_shift[:a] = string_key[0..1]
@@ -35,7 +36,6 @@ module Calculable
 
     key_shift
   end
-
 
   #Callable in Shift, returns {a:,b:,c:,d:} hash
   def calculate_shift(key_shift, date_shift, decrypt = false)
@@ -53,50 +53,68 @@ module Calculable
       this_key_shift.each do |k, v|
         neg_shift[k] = -1 * v
       end
-      neg_shift
+      neg_shift.each_value.to_a
     else
-      this_key_shift
+      this_key_shift.each_value.to_a
     end
   end
 
+  def find_shift
+    key_shift = find_key_shift(@key.key_value) # Hash
+    date_shift = calculate_offset(@date.date) # 4 digit integer
+    calculate_shift(key_shift, date_shift, @decrypt)
+  end
+
+  def character_set_a
+    @characters.rotate(find_shift[0])
+  end
+
+  def character_set_b
+    @characters.rotate(find_shift[1])
+  end
+
+  def character_set_c
+    @characters.rotate(find_shift[2])
+  end
+
+  def character_set_d
+    @characters.rotate(find_shift[3])
+  end
+
+
 end
-  # Called in shift. Outputs encrypted or decrypted message based on 'absolute_shift'
 
+ ###All of these would only work if methods can be more than 7 lines inside classes###
+  #Called in shift. Outputs encrypted or decrypted message based on 'absolute_shift'
   # def apply_shift(message, shift)
-
+  #   shifted_char = create_character_shift(shift[:a])
+  #   msg_char_index = find_character_index(message)
+  #   message = message.downcase.chars
+  #
+  #   encrypted_msg = []
+  #   msg_char_index.each do |char, index|
+  #   encrypted_msg = message.map do |msg_char|
+  #       if msg_char == char
+  #         shifted_char[index]
+  #       end
+  #     end
+  #   end
+  #    binding.pry
+  #   encrypted_msg
   # end
-
-
-
-
-
-
-
-
-##Consider Implementing##
-#http://www.railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/
-# module Calculable #ClassLevelInheritableAttributes
-#   def self.included(base)
-#     base.extend(ClassMethods)
-#   end
-#
-#   module ClassMethods
-#     def inheritable_attributes(*args)
-#       @inheritable_attributes ||= [:inheritable_attributes]
-#       @inheritable_attributes += args
-#       args.each do |arg|
-#         class_eval %(
-#           class << self; attr_accessor :#{arg} end
-#         )
-#       end
-#       @inheritable_attributes
-#     end
-#
-#     def inherited(subclass)
-#       @inheritable_attributes.each do |inheritable_attribute|
-#         instance_var = "@#{inheritable_attribute}"
-#         subclass.instance_variable_set(instance_var, instance_variable_get(instance_var))
-#       end
-#     end
-#   end
-# end
+  #
+  # def find_character_index(message)
+  #   input_message = message.downcase.chars
+  #   characters = Array("a".."z").push(" ")
+  #   index_hash = Hash.new
+  #   input_message.each {|message_char| index_hash[message_char] = characters.index(message_char)}
+  #   index_hash
+  # end
+  #
+  # def create_character_shift(shift_key)
+  #   characters = Array("a".."z").push(" ")
+  #   characters = characters.rotate(shift_key)
+  #   # characters_hash = characters.to_h {|e| [e, characters.index(e)]}
+  #   # characters_hash
+  #   characters
+  # end

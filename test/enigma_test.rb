@@ -1,5 +1,5 @@
 require './test/test_helper'
-require 'date'
+# require 'date'
 require './lib/enigma'
 
 class EnigmaTest < Minitest::Test

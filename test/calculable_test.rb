@@ -36,7 +36,6 @@ class CalculableTest < Minitest::Test
   end
 
   def test_calculate_shift_for_encrypt
-    skip
     key_shift = {:a=>"12", :b=>"23", :c=>"34", :d=>"45"}
     date_shift = "0464"
     expected_hash = { a: 12,
@@ -47,7 +46,6 @@ class CalculableTest < Minitest::Test
   end
 
   def test_calculate_shift_for_decrypt
-    skip
     key_shift = {:a=>"12", :b=>"23", :c=>"34", :d=>"45"}
     date_shift = "0464"
     expected_hash = { a: -12,

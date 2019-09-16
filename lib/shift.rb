@@ -1,7 +1,7 @@
 require_relative 'calculable'
-require_relative 'key'
-require_relative 'offset'
-require_relative 'enigma'
+# require_relative 'key'
+# require_relative 'offset'
+# require_relative 'enigma'
 # require 'pry'
 
 class Shift #< Enigma

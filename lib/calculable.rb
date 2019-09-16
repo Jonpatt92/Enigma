@@ -35,16 +35,31 @@ module Calculable
 
     key_shift
   end
-end
+
 
   #Callable in Shift, returns {a:,b:,c:,d:} hash
+  def calculate_shift(key_shift, date_shift, decrypt = false)
+    this_key_shift = key_shift
+    this_date_shift = date_shift
+    this_key_shift.transform_values!(&:to_i)
 
-  # def calculate_shift(key_shift, date_shift, decrypt = false)
-    #if true, reverse values
-    #@shift = combine @date_shift & @key_shift
-  # end
+    this_key_shift[:a] += this_date_shift[0].to_i
+    this_key_shift[:b] += this_date_shift[1].to_i
+    this_key_shift[:c] += this_date_shift[2].to_i
+    this_key_shift[:d] += this_date_shift[3].to_i
 
+    if decrypt
+      neg_shift = Hash.new(0)
+      this_key_shift.each do |k, v|
+        neg_shift[k] = -1 * v
+      end
+      neg_shift
+    else
+      this_key_shift
+    end
+  end
 
+end
   # Called in shift. Outputs encrypted or decrypted message based on 'absolute_shift'
 
   # def apply_shift(message, shift)

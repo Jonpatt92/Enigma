@@ -18,6 +18,7 @@ class Enigma #< Shift
   end
 
   def encrypt(message, key = nil, date = nil)
+    #find a way to ensure date is received as the date in absense of key argument
     @shift = Shift.new(message, key, date)
     @encrypt_key = @shift.key
     @encrypt_date = @shift.date
@@ -25,14 +26,17 @@ class Enigma #< Shift
     encrypted_hash = { encryption: @encrypted_message,
                        key: key,
                        date: date }
+    encrypted_hash
   end
 
   def decrypt(message = @encrypted_message, key = @encrypt_key, date = @encrypt_date)
+    #find a way to ensure date is received as the date in absense of key argument
     @deshift = Shift.new(message, key, date, true)
     @decrypted_message = @deshift.output_message
     decrypted_hash = { decryption: decrypted_message,
                        key: key,
                        date: date }
+    decrypted_hash
   end
 end
 

@@ -88,7 +88,6 @@ class CalculableTest < Minitest::Test
   end
 
   def test_encrypt_character_set_d
-    skip
     assert_equal "e", @shift_2.encrypt_character_set_d("l", 3)
   end
 

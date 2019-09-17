@@ -102,6 +102,13 @@ module Calculable
     end
   end
 
+  def encrypt_character_set_d(msg_character, msg_char_index)
+    if (msg_char_index + 1) % 4 == 0
+      msg_character_base_index = @characters.index(msg_character)
+      character_set_d[msg_character_base_index]
+    end
+  end
+
 end
 
  ###All of these would only work if methods can be more than 7 lines inside classes, resulting methods are massive###

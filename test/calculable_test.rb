@@ -76,12 +76,10 @@ class CalculableTest < Minitest::Test
   end
 
   def test_encrypt_character_set_a
-    skip
     assert_equal "k", @shift_2.encrypt_character_set_a("h", 0)
   end
 
   def test_encrypt_character_set_b
-    skip
     assert_equal "e", @shift_2.encrypt_character_set_b("e", 1)
   end
 

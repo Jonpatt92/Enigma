@@ -40,10 +40,3 @@ class Enigma
     decrypted_hash
   end
 end
-
-# binding.pry
-#instantiate characters here or in Shift, must be accessible to shift
-#Shift.new # Shift object could store @key & @offset. This could instantiate here as nil, then be created when you call Enigma.encrypt.
-
-#...For extra security, you could instantiate a new shift object with Enigma.encrypt. Then pass the Shift.key & Shift.date values to corresponding instance variables in Enigma.  Plus have shift automatically set a class variable = to the encrypted message.
-# Then Enigma.decrypt would use those values to generate a Deshift class object, which sets a 2nd class variable = to the decrypted message, which is then referenced in decrypt's output.

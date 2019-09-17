@@ -12,7 +12,7 @@ class Enigma
     @shift = nil
     @deshift = nil
     @encrypt_key = nil
-    @encrypt_date = nil
+    @encrypt_date = Date.today.strftime("%d%m%y")
     @encrypted_message = nil
     @decrypted_message = nil
   end

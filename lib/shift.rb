@@ -21,7 +21,6 @@ class Shift
     @output_message = []
   end
 
-
   def shift_message
     @output_message = @input_message.map.each_with_index do |char, index|
       if encrypt_character_set_a(char, index) # If this returns truthy, the input_message's character falls inside the 'a' set.

@@ -9,6 +9,7 @@ class ShiftTest < Minitest::Test
     @shift_1 = Shift.new("Hello world", "040895")
     @shift_2 = Shift.new("Hello world", "02715", "040895")
     @shift_3 = Shift.new("keder ohulw", "02715", "040895", true)
+    @shift_4 = Shift.new("Hello world!", "02715", "040895")
 
   end
 
@@ -36,8 +37,10 @@ class ShiftTest < Minitest::Test
 
   def test_shift_message_encrypt
     @shift_2.shift_message
+    @shift_4.shift_message
 
     assert_equal "keder ohulw", @shift_2.output_message
+    assert_equal "keder ohulw!", @shift_4.output_message
   end
 
   def test_shift_message_decrypt

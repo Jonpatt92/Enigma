@@ -44,11 +44,20 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_decrypt_with_no_date
-    skip
-    encrypted = @enigma.encrypt("hello world", "02715")
-    expected_hash = # decryption hash here
+    encrypted_hash = @enigma.encrypt("hello world", "02715")
+    encrypted_message = encrypted_hash[:encryption]
+    encrypted_date = encrypted_hash[:date]
+    encrypted_key = encrypted_hash[:key]
+    todays_date = Date.today.strftime("%d%m%y")
+    decrypted_hash = @enigma.decrypt
+    decrypted_message = decrypted_hash[:decryption]
+    decrypted_date = decrypted_hash[:date]
+    decrypted_key = decrypted_hash[:key]
+    binding.pry
 
-    assert_equal expected_hash, @enigma.decrypt(encrypted[:encryption], "02715")
+    assert_equal "hello world", decrypted_message
+    assert_equal todays_date, decrypted_date
+    assert_equal "02715", decrypted_key
   end
 
   def test_it_can_encrypt_with_no_key

@@ -18,7 +18,6 @@ class Enigma
   end
 
   def encrypt(message, key = nil, date = nil)
-
     @shift = Shift.new(message, key, date)
     @encrypt_key = @shift.key.key_value
     @encrypt_date = @shift.date.date

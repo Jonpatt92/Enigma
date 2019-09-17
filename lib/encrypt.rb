@@ -8,7 +8,6 @@ require './lib/enigma'
 #$ ruby ./lib/encrypt.rb message.txt encrypted.txt
 #Created 'encrypted.txt' with the key 82648 and date 240818
 
-
 message_path = ARGV[0]
 message_file = File.open(message_path, 'r')
 message = message_file.read.chomp

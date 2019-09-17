@@ -1,7 +1,6 @@
 require './test/test_helper'
 require './lib/shift'
 
-
 class ShiftTest < Minitest::Test
 
   def setup
@@ -10,7 +9,6 @@ class ShiftTest < Minitest::Test
     @shift_2 = Shift.new("Hello world", "02715", "040895")
     @shift_3 = Shift.new("keder ohulw", "02715", "040895", true)
     @shift_4 = Shift.new("Hello world!", "02715", "040895")
-
   end
 
   def test_it_exists

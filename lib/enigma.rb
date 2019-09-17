@@ -3,7 +3,6 @@ require 'bundler/setup'
 Bundler.require(:default)
 require_relative 'shift'
 
-
 class Enigma
   attr_accessor :encrypted_message, :decrypted_message
   attr_reader :shift
@@ -39,4 +38,9 @@ class Enigma
                        date: date }
     decrypted_hash
   end
+
+  def crack(message = @encrypted_message, date = Date.today.strftime("%d%m%y"))
+
+  end
+  
 end

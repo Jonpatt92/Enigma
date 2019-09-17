@@ -97,12 +97,13 @@ class EnigmaTest < Minitest::Test
     encrypted_hash = @enigma.encrypt("hello world")
     encrypted_message = encrypted_hash[:encryption]
     encrypted_key = encrypted_hash[:key]
+    
     decrypted_hash = @enigma.decrypt(encrypted_message)
+
     decrypted_message = decrypted_hash[:decryption]
     decrypted_date = decrypted_hash[:date]
     decrypted_key = decrypted_hash[:key]
     todays_date = Date.today.strftime("%d%m%y")
-
 
     assert_equal "hello world", decrypted_message
     assert_equal todays_date, decrypted_date

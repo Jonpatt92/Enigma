@@ -37,6 +37,17 @@ class CalculableTest < Minitest::Test
     assert_equal expected_hash, @shift.find_key_shift("12345")
   end
 
+  def test_decrypt_helper
+    total_shift = {a: 5, b: 10, c: 15, d: 20}
+    expected = [-5, -10, -15, -20]
+
+    assert_equal expected, @shift.decrypt_helper(total_shift)
+  end
+
+  def test_find_total_shift_helper
+    skip
+  end
+
   def test_calculate_shift_for_encrypt
     key_shift = {:a=>"12", :b=>"23", :c=>"34", :d=>"45"}
     date_shift = "0464"

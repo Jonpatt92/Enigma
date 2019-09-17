@@ -38,10 +38,6 @@ class Shift
 
 end
 
-
-
-
-
 ## Trying to make shift_message use enumerable instead of if loop##
 # def character_set_array
 #   character_sets = []

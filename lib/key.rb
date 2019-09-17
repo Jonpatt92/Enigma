@@ -7,7 +7,7 @@ class Key #< Shift is this necessary?
   def initialize(key = nil)
    @key_value = key.to_s
 
-    if key == nil
+    if key == nil || key.count("0123456789") != 5
      @key_value = random_key
     end
   end

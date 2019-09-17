@@ -20,8 +20,9 @@ class KeyTest < Minitest::Test
   def test_it_can_initialize_with_key_argument
     assert_equal "01234", @key_2.key_value
   end
-end
 
-# def test_it_can_initialize_with_incorrect_key_argument
-#   assert_equal 5, @key_3.key_value.count("0123456789")
-# end
+  def test_it_can_initialize_with_incorrect_key_argument
+    assert_equal 5, @key_3.key_value.count("0123456789")
+  end
+  
+end

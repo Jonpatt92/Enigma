@@ -97,7 +97,7 @@ class EnigmaTest < Minitest::Test
     encrypted_hash = @enigma.encrypt("hello world")
     encrypted_message = encrypted_hash[:encryption]
     encrypted_key = encrypted_hash[:key]
-    
+
     decrypted_hash = @enigma.decrypt(encrypted_message)
 
     decrypted_message = decrypted_hash[:decryption]
@@ -109,4 +109,5 @@ class EnigmaTest < Minitest::Test
     assert_equal todays_date, decrypted_date
     assert_equal encrypted_key, decrypted_key
   end
+
 end

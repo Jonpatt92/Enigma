@@ -1,20 +1,28 @@
-#: Add a command line interface for encryption and decryption.
-
-#: You should create a Runner file called encrypt.rb that takes two command line arguments.
-
+require 'pry'
+require './lib/enigma'
+#: Takes two command line arguments.
 #: The first is an existing file that contains a message to encrypt.
-
 #: The second is a file where your program should write the encrypted message.
-
-#: In addition to writing the encrypted message to the file, your program should output to the screen the file it wrote to, the key and the date.
-
-
 
 # Command Line Interface
 #$ ruby ./lib/encrypt.rb message.txt encrypted.txt
-
 #Created 'encrypted.txt' with the key 82648 and date 240818
 
-#$ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 82648 240818
 
-#Created 'decrypted.txt' with the key 82648 and date 240818
+message_path = ARGV[0]
+message_file = File.open(message_path, 'r')
+message = message_file.read.chomp
+message.delete! "\""
+
+enigma = Enigma.new
+encryption = enigma.encrypt(message)
+encrypted_message = encryption[:encryption]
+encrypted_file = ARGV[1]
+
+File.open("#{encrypted_file}", "w+") do |f|
+  f.write("#{encrypted_message}\n")
+  f.write("#{encryption[:key]}\n")
+  f.write("#{encryption[:date]}")
+end
+
+puts "Created '#{encrypted_file}' with the key #{encryption[:key]} and date #{encryption[:date]}"

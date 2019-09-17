@@ -23,14 +23,14 @@ class Shift
 
   def shift_message
     @output_message = @input_message.map.each_with_index do |char, index|
-      if encrypt_character_set_a(char, index)
-        encrypt_character_set_a(char, index)
-      elsif encrypt_character_set_b(char, index)
-        encrypt_character_set_b(char, index)
-      elsif encrypt_character_set_c(char, index)
-        encrypt_character_set_c(char, index)
-      elsif encrypt_character_set_d(char, index)
-        encrypt_character_set_d(char, index)
+      if encrypt_character_set_a(char, index) # If this returns truthy, the input_message's character falls inside the 'a' set.
+        encrypt_character_set_a(char, index) # Replaces the input_message's character with the shifted version.
+      elsif encrypt_character_set_b(char, index) # If this returns truthy, the input_message's character falls inside the 'b' set.
+        encrypt_character_set_b(char, index) # Replaces the input_message's character with the shifted version.
+      elsif encrypt_character_set_c(char, index) # If this returns truthy, the input_message's character falls inside the 'c' set.
+        encrypt_character_set_c(char, index) # Replaces the input_message's character with the shifted version.
+      elsif encrypt_character_set_d(char, index) # If this returns truthy, the input_message's character falls inside the 'd' set.
+        encrypt_character_set_d(char, index) # Replaces the input_message's character with the shifted version.
       end
     end
     @output_message = @output_message.join
@@ -38,24 +38,12 @@ class Shift
 
 end
 
-## Trying to make shift_message use enumerable instead of if loop##
-# def character_set_array
-#   character_sets = []
-#   character_sets << character_set_d << character_set_c << character_set_b << character_set_a
-#   character_sets
-# end
-
-# def shift_message
-#   character_sets = character_set_array
-#   until @output_message.count == @input_message.count
-#     @output_message = @input_message.map.each_with_index do |msg_char, msg_index|
-#       character_sets.each_with_index do |char_set, set_index|
-#         if (msg_index + (set_index + 1)) % 4 == 0
-#           base_index = @characters.index(msg_char)
-#           char_set[base_index]
-#         end
-#       end
-#     end
-#   end
-#   @output_message = @output_message.join
-# end
+def shift_message
+  @output_message = @input_message.map.each_with_index do |char, index| #Replaces the input_message's character with whatever set matches its required shift ('a' through 'd')
+      encrypt_character_set_a(char, index) # Replaces the input_message's character with the 'a' shifted version.
+      encrypt_character_set_b(char, index) # Replaces the input_message's character with the 'b' shifted version.
+      encrypt_character_set_c(char, index) # Replaces the input_message's character with the 'c' shifted version.
+      encrypt_character_set_d(char, index) # Replaces the input_message's character with the 'd' shifted version.
+  end
+  @output_message = @output_message.join
+end

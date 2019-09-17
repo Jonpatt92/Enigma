@@ -3,8 +3,8 @@ require 'bundler/setup'
 Bundler.require(:default)
 require_relative 'shift'
 
-#Only Enigma can assign anything other than a nil-balancing random key or 'today's date'
-class Enigma #< Shift
+
+class Enigma
   attr_accessor :encrypted_message, :decrypted_message
   attr_reader :shift
 
@@ -18,7 +18,7 @@ class Enigma #< Shift
   end
 
   def encrypt(message, key = nil, date = nil)
-    #find a way to ensure date is received as the date in absense of key argument
+
     @shift = Shift.new(message, key, date)
     @encrypt_key = @shift.key.key_value
     @encrypt_date = @shift.date.date

@@ -25,8 +25,8 @@ class Enigma #< Shift
     @shift.shift_message
     @encrypted_message = @shift.output_message
     encrypted_hash = { encryption: @encrypted_message,
-                       key: key,
-                       date: date }
+                       key: @encrypt_key,
+                       date: @encrypt_date }
     encrypted_hash
   end
 

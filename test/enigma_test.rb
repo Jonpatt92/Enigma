@@ -1,5 +1,5 @@
 require './test/test_helper'
-require 'date'
+# require 'date'
 require './lib/enigma'
 
 class EnigmaTest < Minitest::Test
@@ -13,7 +13,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_encrypt
-    skip
+
     expected_hash = {
                      encryption: "keder ohulw",
                      key: "02715",
@@ -24,7 +24,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_decrypt
-    skip
+    
     expected_hash = {
                       decryption: "hello world",
                       key: "02715",

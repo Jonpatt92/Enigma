@@ -1,31 +1,39 @@
 require_relative 'calculable'
 require_relative 'key'
 require_relative 'offset'
-require_relative 'enigma'
-# require 'pry'
+require 'pry'
 
 class Shift #< Enigma
   include Calculable
-  attr_reader :key, :date, :output_message#, :characters
+  attr_reader :key, :date, :input_message, :output_message#, :characters
 
-  def initialize(message = nil, key = nil, date = nil, decrypt = false) # (key)
-    @input_message = message
-    @key = Key.new(key)
-    @date = Offset.new(date)
-    @characters = Array("a".."z").push(" ")
+  def initialize(message, key = nil, date = nil, decrypt = false)
+    if key != nil && key.count("0123456789") == 5 || key == nil && date == nil
+      @key = Key.new(key)
+      @date = Offset.new(date)
+    elsif key != nil && (key.count("0123456789") == 6) && (date == nil)
+      @key = Key.new
+      @date = Offset.new(key)
+    end
     @decrypt = decrypt
+    @characters = Array("a".."z").push(" ")
+    @input_message = message.downcase.chars
     @output_message = nil
-    #shift_message
   end
 
   def shift_message
-    key_shift = find_key_shift(@key.key_value) # Hash
-    date_shift = calculate_offset(@date.date) # 4 digit integer
-    absolute_shift = calculate_shift(key_shift, date_shift, @decrypt)
-    @output_message = apply_shift(@input_message, absolute_shift)
+    @output_message = @input_message.map.each_with_index do |char, index|
+      if encrypt_character_set_a(char, index)
+        encrypt_character_set_a(char, index)
+      elsif encrypt_character_set_b(char, index)
+        encrypt_character_set_b(char, index)
+      elsif encrypt_character_set_c(char, index)
+        encrypt_character_set_c(char, index)
+      elsif encrypt_character_set_d(char, index)
+        encrypt_character_set_d(char, index)
+      end
+    end
+  @output_message = @output_message.join
   end
 
 end
-
-# @encrypted_message = #might be local value assigned in Enigma.encrypt, then stored in Enigma instance variable @encrypted_message. Visa versa for Enigma.decrypt, output stored as @decrypted_message
-# @characters  #consider making a variable accessible in Enigma, or instantiated in Enigma.

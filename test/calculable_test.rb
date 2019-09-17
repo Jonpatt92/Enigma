@@ -45,7 +45,11 @@ class CalculableTest < Minitest::Test
   end
 
   def test_find_total_shift_helper
-    skip
+    key_shift = {:a=>"12", :b=>"23", :c=>"34", :d=>"45"}
+    date_shift = "1025"
+    expected = {:a=>13, :b=>23, :c=>36, :d=>50}
+
+    assert_equal expected, @shift.find_total_shift_helper(key_shift, date_shift)
   end
 
   def test_calculate_shift_for_encrypt

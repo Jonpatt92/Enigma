@@ -15,7 +15,7 @@ module Calculable
   # Callable in shift
   def calculate_offset(date)
     offset_value = date.to_i * date.to_i
-    offset_value.to_s[-4..-1]
+    offset_value.to_s[-4..-1] # 4 digit numeric string representing date offset
   end
 
   # Callable in Shift
@@ -43,8 +43,7 @@ module Calculable
     key_shift[:b] += date_shift[1].to_i
     key_shift[:c] += date_shift[2].to_i
     key_shift[:d] += date_shift[3].to_i
-    total_shift = key_shift
-    total_shift # Hash of total shifts with key being[:a .. :d], value being total shift.
+    key_shift # Hash of total shifts with key being[:a .. :d], value being total shift integer
   end
 
   #Callable in Shift, returns array where array[0] = a-shift ... array[3] = d-shift

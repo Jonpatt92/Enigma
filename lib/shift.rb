@@ -21,6 +21,7 @@ class Shift
     @output_message = []
   end
 
+
   def shift_message
     @output_message = @input_message.map.each_with_index do |char, index|
       if encrypt_character_set_a(char, index) # If this returns truthy, the input_message's character falls inside the 'a' set.
@@ -38,12 +39,19 @@ class Shift
 
 end
 
-def shift_message
-  @output_message = @input_message.map.each_with_index do |char, index| #Replaces the input_message's character with whatever set matches its required shift ('a' through 'd')
-      encrypt_character_set_a(char, index) # Replaces the input_message's character with the 'a' shifted version.
-      encrypt_character_set_b(char, index) # Replaces the input_message's character with the 'b' shifted version.
-      encrypt_character_set_c(char, index) # Replaces the input_message's character with the 'c' shifted version.
-      encrypt_character_set_d(char, index) # Replaces the input_message's character with the 'd' shifted version.
-  end
-  @output_message = @output_message.join
-end
+#Can't get to work.
+# def shift_message
+#   new_char = nil
+#   binding.pry
+#   @output_message = @input_message.map.each_with_index do |char, index| #Replaces the input_message's character with whatever set matches its required shift ('a' through 'd')
+#     until new_char.class == String
+#       new_char = encrypt_character_set_a(char, index) #if encrypt_character_set_a(char, index) # Replaces the input_message's character with the 'a' shifted version.
+#       new_char = encrypt_character_set_b(char, index) #if encrypt_character_set_b(char, index) # Replaces the input_message's character with the 'b' shifted version.
+#       new_char = encrypt_character_set_c(char, index) #if encrypt_character_set_c(char, index) # Replaces the input_message's character with the 'c' shifted version.
+#       new_char = encrypt_character_set_d(char, index) #if encrypt_character_set_d(char, index) # Replaces the input_message's character with the 'd' shifted version.
+#     end
+#     new_char
+#   end
+#   binding.pry
+#   @output_message = @output_message.join
+# end

@@ -84,7 +84,7 @@ module Calculable
 
 end
 
- ###All of these would only work if methods can be more than 7 lines inside classes###
+ ###All of these would only work if methods can be more than 7 lines inside classes, resulting methods are massive###
   #Called in shift. Outputs encrypted or decrypted message based on 'absolute_shift'
   # def apply_shift(message, shift)
   #   shifted_char = create_character_shift(shift[:a])

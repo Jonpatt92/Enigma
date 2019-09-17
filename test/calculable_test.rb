@@ -79,6 +79,9 @@ class CalculableTest < Minitest::Test
     assert_equal "k", @shift_2.encrypt_character_set_a("h", 0)
   end
 
+  def test_encrypt_character_set_b
+    assert_equal "e", @shift_2.encrypt_character_set_a("e", 1)
+  end
 
 end
 

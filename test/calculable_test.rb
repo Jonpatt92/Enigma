@@ -8,6 +8,7 @@ class CalculableTest < Minitest::Test
     @date = Date.today.strftime("%d%m%y")
     @shift = Shift.new("Hello world")
     @shift_2 = Shift.new("Hello world", "02715", "040895")
+    @shift_3 = Shift.new("Hello world", "2715", "040895")
   end
 
   def test_create_date
@@ -52,7 +53,9 @@ class CalculableTest < Minitest::Test
 
   def test_find_shift
     expected = [3, 27, 73, 20]
+
     assert_equal expected, @shift_2.find_shift
+    assert_equal 4, @shift_3.find_shift.count
   end
 
   def test_character_set_a

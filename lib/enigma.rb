@@ -12,13 +12,12 @@ class Enigma
     @shift = nil
     @deshift = nil
     @encrypt_key = nil
-    @encrypt_date = nil
+    @encrypt_date = Date.today.strftime("%d%m%y")
     @encrypted_message = nil
     @decrypted_message = nil
   end
 
   def encrypt(message, key = nil, date = nil)
-
     @shift = Shift.new(message, key, date)
     @encrypt_key = @shift.key.key_value
     @encrypt_date = @shift.date.date

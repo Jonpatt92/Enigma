@@ -81,6 +81,33 @@ module Calculable
     @characters.rotate(find_shift[3])
   end
 
+  def encrypt_character_set_a(msg_character, msg_char_index)
+    if (msg_char_index + 4) % 4 == 0
+      msg_character_base_index = @characters.index(msg_character)
+      character_set_a[msg_character_base_index]
+    end
+  end
+
+  def encrypt_character_set_b(msg_character, msg_char_index)
+    if (msg_char_index + 3) % 4 == 0
+      msg_character_base_index = @characters.index(msg_character)
+      character_set_b[msg_character_base_index]
+    end
+  end
+
+  def encrypt_character_set_c(msg_character, msg_char_index)
+    if (msg_char_index + 2) % 4 == 0
+      msg_character_base_index = @characters.index(msg_character)
+      character_set_c[msg_character_base_index]
+    end
+  end
+
+  def encrypt_character_set_d(msg_character, msg_char_index)
+    if (msg_char_index + 1) % 4 == 0
+      msg_character_base_index = @characters.index(msg_character)
+      character_set_d[msg_character_base_index]
+    end
+  end
 
 end
 

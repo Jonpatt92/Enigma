@@ -8,7 +8,7 @@ class Shift
   attr_reader :key, :date, :input_message, :output_message
 
   def initialize(message, key = nil, date = nil, decrypt = false)
-    if key != nil && key.count("0123456789") == 5 || key == nil && date == nil
+    if key != nil && key.count("0123456789") != 6 || key == nil && date == nil
       @key = Key.new(key)
       @date = Offset.new(date)
     elsif key != nil && (key.count("0123456789") == 6) && (date == nil)
@@ -20,7 +20,6 @@ class Shift
     @input_message = message.downcase.chars
     @output_message = []
   end
-
 
   def shift_message
     @output_message = @input_message.map.each_with_index do |char, index|

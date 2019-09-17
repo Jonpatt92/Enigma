@@ -21,41 +21,39 @@ module Calculable
   # Callable in Shift
   def find_key_shift(key)
     key_shift = {a: 0, b: 0, c: 0, d: 0}
-    this_key = key.to_s
-    if this_key.count("0123456789") == 5
-      string_key = this_key
-    else
-      rand_key = self.random_key
-      string_key = rand_key
-    end
-
+    string_key = key.to_s if key.to_s.count("0123456789") == 5
     key_shift[:a] = string_key[0..1]
     key_shift[:b] = string_key[1..2]
     key_shift[:c] = string_key[2..3]
     key_shift[:d] = string_key[3..4]
+    key_shift # Hash of key shifts a: to d:
+  end
 
-    key_shift # Hash
+  def decrypt_helper(total_shift)
+    neg_shift = Hash.new(0)
+    total_shift.each do |k, v|
+      neg_shift[k] = -1 * v
+    end
+    neg_shift.each_value.to_a # Array of total-neg-shifts a: ... d:
+  end
+
+  def find_total_shift_helper(key_shift, date_shift)
+    key_shift.transform_values!(&:to_i) # Turns key shift values from strings to integers
+    key_shift[:a] += date_shift[0].to_i
+    key_shift[:b] += date_shift[1].to_i
+    key_shift[:c] += date_shift[2].to_i
+    key_shift[:d] += date_shift[3].to_i
+    total_shift = key_shift
+    total_shift # Hash of total shifts with key being[:a .. :d], value being total shift.
   end
 
   #Callable in Shift, returns array where array[0] = a-shift ... array[3] = d-shift
   def calculate_shift(key_shift, date_shift, decrypt = false)
-    this_key_shift = key_shift
-    this_date_shift = date_shift
-    this_key_shift.transform_values!(&:to_i) # Turns key shift values from strings to integers
-
-    this_key_shift[:a] += this_date_shift[0].to_i
-    this_key_shift[:b] += this_date_shift[1].to_i
-    this_key_shift[:c] += this_date_shift[2].to_i
-    this_key_shift[:d] += this_date_shift[3].to_i
-
+    total_shift = find_total_shift_helper(key_shift, date_shift)
     if decrypt
-      neg_shift = Hash.new(0)
-      this_key_shift.each do |k, v|
-        neg_shift[k] = -1 * v
-      end
-      neg_shift.each_value.to_a
+      decrypt_helper(total_shift) # Array of total-neg-shifts a: to d:
     else
-      this_key_shift.each_value.to_a
+      total_shift.each_value.to_a # Array of total-shifts a: to d:
     end
   end
 

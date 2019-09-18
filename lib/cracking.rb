@@ -1,23 +1,28 @@
-require_relative 'calculable'
+require_relative 'crackable'
 require_relative 'key'
 require_relative 'offset'
 
-class Shift
-  include Calculable
+class Cracking
+  include Crackable
   attr_reader :key, :date, :input_message, :output_message
 
-  def initialize(message, key = nil, date = nil, decrypt = false)
-    if key != nil && key.count("0123456789") != 6 || key == nil && date == nil
-      @key = Key.new(key)
-      @date = Offset.new(date)
-    elsif key != nil && (key.count("0123456789") == 6) && (date == nil)
-      @key = Key.new
-      @date = Offset.new(key)
-    end
-    @decrypt = decrypt
+  def initialize(message, date = nil)
+    @date = Offset.new(date)
+    @offset = calculate_offset(@date.date)
+    @key = Key.new
     @characters = Array("a".."z").push(" ")
     @input_message = message.downcase.chars
     @output_message = []
+    @absolute_shift = nil
+  end
+
+  def cracking
+    possible_keys = Array("00001".."99999")
+    until @output_message[-4..-1] == " end"
+      @key = Key.new(possible_keys.shift)
+      @absolute_shift = find_shift
+      shift_message
+    end
   end
 
   def shift_message
@@ -34,5 +39,4 @@ class Shift
     end
     @output_message = @output_message.join
   end
-
 end

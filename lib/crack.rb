@@ -1,3 +1,4 @@
+require './lib/enigma'
 #Additionally, create a Runner file called crack.rb that takes three command line arguments.
 # The first is an existing file that contains an encrypted message.
 # The second is a file where your program should write the cracked message.
@@ -14,9 +15,12 @@ message_file = File.open(message_path, 'r')
 encrypted = message_file.readlines(chomp: true)
 encrypted_message = encrypted[0]
 # encrypted_date = encrypted[2]
-encrypted_date = ARGV[2]
-
-
+if ARGV[2] == encrypted[2]
+  encrypted_date = ARGV[2]
+else
+  encrypted_date = encrypted[2]
+end
+# binding.pry
 enigma = Enigma.new
 cracked_hash = enigma.crack(encrypted_message, encrypted_date) # Could use ARGV[2] & ARGV[3] IF they are entered correctly.
 cracked_message = cracked_hash[:decryption]

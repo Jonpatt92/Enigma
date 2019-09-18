@@ -17,8 +17,18 @@ message_path = ARGV[0]
 message_file = File.open(message_path, 'r')
 encrypted = message_file.readlines(chomp: true)
 encrypted_message = encrypted[0]
-encrypted_key = encrypted[1]
-encrypted_date = encrypted[2]
+
+if ARGV[2] == encrypted[1]
+  encrypted_key = ARGV[2]
+else
+  encrypted_key = encrypted[1]
+end
+
+if ARGV[3] == encrypted[2]
+  encrypted_date = ARGV[2]
+else
+  encrypted_date = encrypted[2]
+end
 
 
 enigma = Enigma.new

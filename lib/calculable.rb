@@ -1,5 +1,3 @@
-require 'pry'
-
 module Calculable
 
   # Callable in Shift and Offset

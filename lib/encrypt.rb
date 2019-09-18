@@ -1,12 +1,4 @@
-require 'pry'
 require './lib/enigma'
-#: Takes two command line arguments.
-#: The first is an existing file that contains a message to encrypt.
-#: The second is a file where your program should write the encrypted message.
-
-# Command Line Interface
-#$ ruby ./lib/encrypt.rb message.txt encrypted.txt
-#Created 'encrypted.txt' with the key 82648 and date 240818
 
 message_path = ARGV[0]
 message_file = File.open(message_path, 'r')
@@ -25,3 +17,12 @@ File.open("#{encrypted_file}", "w+") do |f|
 end
 
 puts "Created '#{encrypted_file}' with the key #{encryption[:key]} and date #{encryption[:date]}"
+
+
+#: Takes two command line arguments.
+#: The first is an existing file that contains a message to encrypt.
+#: The second is a file where your program should write the encrypted message.
+
+# Command Line Interface
+#$ ruby ./lib/encrypt.rb message.txt encrypted.txt
+#Created 'encrypted.txt' with the key 82648 and date 240818

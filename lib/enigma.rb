@@ -5,8 +5,7 @@ require_relative 'shift'
 require_relative 'cracking'
 
 class Enigma
-  attr_accessor :encrypted_message, :decrypted_message
-  attr_reader :shift, :cracked_message
+  attr_accessor :decrypted_message
 
   def initialize
     @crack = nil

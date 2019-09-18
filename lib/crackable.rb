@@ -1,5 +1,3 @@
-require 'pry'
-
 module Crackable
 
   # Callable in crack

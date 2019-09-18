@@ -1,6 +1,5 @@
 require './test/test_helper'
 require './lib/offset'
-require 'date'
 
 class OffsetTest < Minitest::Test
 

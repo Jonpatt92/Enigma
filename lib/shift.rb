@@ -7,8 +7,8 @@ class Shift
   attr_reader :key, :date, :input_message, :output_message
 
   def initialize(message, key = nil, date = nil, decrypt = false)
-    if key != nil && key.count("0123456789") != 6 || key == nil && date == nil
-      @key = Key.new(key)
+    if key != nil && key.count("0123456789") != 6 || key == nil && date == nil # Put this in a method and call that method here. #Lookup parallel assignment
+      @key = Key.new(key) #@key, @date = key_date_generator(key, date)
       @date = Offset.new(date)
     elsif key != nil && (key.count("0123456789") == 6) && (date == nil)
       @key = Key.new

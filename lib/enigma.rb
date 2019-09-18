@@ -2,18 +2,21 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 require_relative 'shift'
+require_relative 'crack'
 
 class Enigma
   attr_accessor :encrypted_message, :decrypted_message
-  attr_reader :shift
+  attr_reader :shift, :cracked_message
 
   def initialize
+    @crack = nil
     @shift = nil
     @deshift = nil
     @encrypt_key = nil
     @encrypt_date = Date.today.strftime("%d%m%y")
     @encrypted_message = nil
     @decrypted_message = nil
+    @cracked_message = nil
   end
 
   def encrypt(message, key = nil, date = nil)
@@ -40,7 +43,12 @@ class Enigma
   end
 
   def crack(message = @encrypted_message, date = Date.today.strftime("%d%m%y"))
-
+    @crack = Crack.new(message, date)
+    @crack.cracking
+    @cracked_message = @crack.output_message
+    cracked_hash = {  decryption: @cracked_message,
+                      key: @crack.key.key_value,
+                      date: date }
+    cracked_hash
   end
-  
 end

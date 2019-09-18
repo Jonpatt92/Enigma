@@ -110,4 +110,38 @@ class EnigmaTest < Minitest::Test
     assert_equal encrypted_key, decrypted_key
   end
 
+  def test_it_can_encrypt_with_special_characters
+    expected_hash = {
+                     encryption: "keder ohulw!!!!",
+                     key: "02715",
+                     date: "040895"
+                     }
+
+     assert_equal expected_hash, @enigma.encrypt("hello world!!!!", "02715", "040895")
+  end
+
+  def test_it_can_decrypt_with_special_characters
+    expected_hash = {
+                      decryption: "hello world!!!!",
+                      key: "02715",
+                      date: "040895"
+                      }
+
+    assert_equal expected_hash, @enigma.decrypt("keder ohulw!!!!", "02715", "040895")
+  end
+
+  def test_it_can_crack
+    @enigma.encrypt("hello world end", "08304", "291018")
+    expected_decryption = { decryption: "hello world end", date: "291018", key: "08304" }
+
+    assert_equal expected_decryption, @enigma.crack("vjqtbeaweqihssi", "291018")
+  end
+
+  def test_it_can_crack_with_special_characters
+    @enigma.encrypt("Hello!!!! end", "130592")
+    expected_decryption = { :decryption=>"hello!!!! end", :key=>"14471", :date=>"130592" }
+
+    assert_equal expected_decryption, @enigma.crack("vzkfb!!!!udhr", "130592")
+  end
+
 end

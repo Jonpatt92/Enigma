@@ -5,5 +5,7 @@ require './lib/offset'
 require 'pry'
 
 enigma = Enigma.new
-enigma.encrypt("h!el!!lo !!wo!!rld!", "02715", "040895")
+enigma.encrypt("Hello world! end")
+enigma.crack
+
 binding.pry

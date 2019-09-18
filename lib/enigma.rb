@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 require_relative 'shift'
-require_relative 'crack'
+require_relative 'cracking'
 
 class Enigma
   attr_accessor :encrypted_message, :decrypted_message
@@ -43,7 +43,7 @@ class Enigma
   end
 
   def crack(message = @encrypted_message, date = Date.today.strftime("%d%m%y"))
-    @crack = Crack.new(message, date)
+    @crack = Cracking.new(message, date)
     @crack.cracking
     @cracked_message = @crack.output_message
     cracked_hash = {  decryption: @cracked_message,

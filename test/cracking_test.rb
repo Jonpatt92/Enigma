@@ -1,17 +1,17 @@
 require './test/test_helper'
-require './lib/crack'
+require './lib/cracking'
 require './lib/enigma'
 
-class CrackTest < Minitest::Test
+class CrackingTest < Minitest::Test
 
   def setup
-    @crack = Crack.new("Hello world end")
-    @crack_1 = Crack.new("Hello world end", "130592")
-    @crack_2 = Crack.new("vjqtbeaweqihssi", "291018")
+    @crack = Cracking.new("Hello world end")
+    @crack_1 = Cracking.new("Hello world end", "130592")
+    @crack_2 = Cracking.new("vjqtbeaweqihssi", "291018")
   end
 
   def test_it_exists
-    assert_instance_of Crack, @crack
+    assert_instance_of Cracking, @crack
   end
 
   def test_it_has_attributes

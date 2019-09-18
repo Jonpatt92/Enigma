@@ -1,43 +1,29 @@
-require_relative 'crackable'
-require_relative 'key'
-require_relative 'offset'
-require 'pry'
+#Additionally, create a Runner file called crack.rb that takes three command line arguments.
+# The first is an existing file that contains an encrypted message.
+# The second is a file where your program should write the cracked message.
+# The third is the date to be used for cracking. In addition to writing the cracked message to the file, your program should output to the screen the file it wrote to, the key used for cracking, and the date used for cracking
 
-class Crack
-  include Crackable
-  attr_reader :key, :date, :input_message, :output_message
+#$ ruby ./lib/encrypt.rb message.txt encrypted.txt
+#Created 'encrypted.txt' with the key 82648 and date 240818
 
-  def initialize(message, date = nil)
-    @date = Offset.new(date)
-    @offset = calculate_offset(@date.date)
-    @key = Key.new
-    @characters = Array("a".."z").push(" ")
-    @input_message = message.downcase.chars
-    @output_message = []
-    @absolute_shift = nil
-  end
+#$ ruby ./lib/crack.rb encrypted.txt cracked.txt 240818
+#Created 'cracked.txt' with the cracked key 82648 and date 240818
 
-  def cracking
-    possible_keys = Array("00001".."99999")
-    until @output_message[-4..-1] == " end"
-      @key = Key.new(possible_keys.shift)
-      @absolute_shift = find_shift
-      shift_message
-    end
-  end
+message_path = ARGV[0]
+message_file = File.open(message_path, 'r')
+encrypted = message_file.readlines(chomp: true)
+encrypted_message = encrypted[0]
+# encrypted_date = encrypted[2]
+encrypted_date = ARGV[2]
 
-  def shift_message
-    @output_message = @input_message.map.each_with_index do |char, index|
-      if encrypt_character_set_a(char, index) # If this returns truthy, the input_message's character falls inside the 'a' set.
-        encrypt_character_set_a(char, index) # Replaces the input_message's character with the shifted version.
-      elsif encrypt_character_set_b(char, index) # If this returns truthy, the input_message's character falls inside the 'b' set.
-        encrypt_character_set_b(char, index) # Replaces the input_message's character with the shifted version.
-      elsif encrypt_character_set_c(char, index) # If this returns truthy, the input_message's character falls inside the 'c' set.
-        encrypt_character_set_c(char, index) # Replaces the input_message's character with the shifted version.
-      elsif encrypt_character_set_d(char, index) # If this returns truthy, the input_message's character falls inside the 'd' set.
-        encrypt_character_set_d(char, index) # Replaces the input_message's character with the shifted version.
-      end
-    end
-    @output_message = @output_message.join
-  end
+
+enigma = Enigma.new
+cracked_hash = enigma.crack(encrypted_message, encrypted_date) # Could use ARGV[2] & ARGV[3] IF they are entered correctly.
+cracked_message = cracked_hash[:decryption]
+cracked_file = ARGV[1]
+
+File.open("#{cracked_file}", "w+") do |f|
+  f.write("#{cracked_message}")
 end
+
+puts "Created '#{cracked_file}' with the cracked key #{cracked_hash[:key]} and date #{cracked_hash[:date]}"

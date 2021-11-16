@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.2)
-    date (2.0.0)
+    date (2.0.1)
     docile (1.3.2)
     json (2.2.0)
     metaclass (0.0.4)
